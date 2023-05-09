@@ -1,14 +1,28 @@
 [tool.poetry]
 name = "py-module-parser"
-version = "0.1.0b0"
-description = ""
+version = "0.2.0"
+description = "Python Module Parser is a library that parses Python modules and outputs information about imports, functions, variables, and their corresponding line numbers. This makes it easier to analyze and understand the structure of your Python code."
 authors = ["Iuliia Volkova <xnuinside@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/xnuinside/py-module-parser"
+repository = "https://github.com/xnuinside/py-module-parser"
+classifiers = [
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^7.3"
 twine = "^4.0.2"
 
 [build-system]
