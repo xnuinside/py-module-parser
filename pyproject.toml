@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "py-module-parser"
+version = "0.1.0b0"
+description = ""
+authors = ["Iuliia Volkova <xnuinside@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+twine = "^4.0.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
