@@ -1,24 +1,29 @@
 import _ast
 import ast
+import sys
 from typing import Any, Dict, List, Union
 
 from py_module_parser.models import (
     ClassOutput,
     FromImportOutput,
-    FuncCallOutput,
+    CallOutput,
     ImportOutput,
     VariableOutput,
+    FunctionOutput,
+    GroupNodesByType,
+    NameOutput,
+    OUTPUT_TYPE,
+    ParserOutput,
 )
 
 
 class PyModulesParser:
-    def __init__(self, input_code: str, group_by_type: bool = False) -> None:
+    def __init__(self, input_code: str) -> None:
         self.input_code = input_code
 
     def process_assign_node(
         self, node: ast.Assign, _attrs: List
     ) -> List[VariableOutput]:
-        _properties = {}
         _type = None
         if isinstance(node.value, ast.Constant):
             # like a = 'b'
@@ -38,7 +43,6 @@ class PyModulesParser:
                 name=name,
                 default=value,
                 type_annotation=_type,
-                properties=_properties,
                 lineno_start=node.lineno,
                 lineno_end=node.end_lineno,
             )
@@ -51,12 +55,20 @@ class PyModulesParser:
         if isinstance(ann, ast.Name):
             _type = ann.id
         elif isinstance(ann, _ast.Subscript):
-            if isinstance(ann.slice.value, ast.Name):
-                _type_value = [ann.slice.value.id]
-            elif isinstance(ann.slice.value, ast.Attribute):
-                _type_value = [self.process_full_attr_node_name(ann.slice.value, None)]
+            if sys.version_info.minor <= 8:
+                _slice = ann.slice.value
             else:
-                _type_value = [name.id for name in ann.slice.value.elts]
+                _slice = ann.slice.elts
+            if isinstance(_slice, ast.Name):
+                _type_value = [_slice.id]
+            elif isinstance(_slice, ast.Attribute):
+                _type_value = [self.process_full_attr_node_name(_slice, None)]
+            else:
+                if sys.version_info.minor <= 8:
+                    slice_list = _slice.elts
+                else:
+                    slice_list = _slice
+                _type_value = [name.id for name in slice_list]
             _type = {ann.value.id: _type_value}
         elif isinstance(ann, _ast.Attribute):
             _type = f"{ann.attr}.{ann.value.id}"
@@ -88,11 +100,11 @@ class PyModulesParser:
                 value = node.value.id
         return {key: value}
 
-    def process_call_node(self, node: _ast.Call) -> FuncCallOutput:
+    def process_call_node(self, node: _ast.Call) -> CallOutput:
         if isinstance(node.func, _ast.Attribute):
-            func_name = self.process_full_attr_node_name(node.func, None)
+            call_name = self.process_full_attr_node_name(node.func, None)
         elif isinstance(node.func, ast.Name):
-            func_name = node.func.id
+            call_name = node.func.id
         kwargs = {}
         for _node in node.keywords:
             kwargs.update(self.process_keyword(_node))
@@ -109,8 +121,8 @@ class PyModulesParser:
             else:
                 arg = _node.id
             args.append(arg)
-        value = FuncCallOutput(
-            func_name=func_name,
+        value = CallOutput(
+            call_name=call_name,
             args=args,
             kwargs=kwargs,
             lineno_start=node.lineno,
@@ -226,7 +238,37 @@ class PyModulesParser:
             self.parse_node(_node, for_nodes)
         return for_nodes
 
-    def parse_node(self, node, output):
+    def parse_return_node(self, node: _ast.Return):
+        returns = []
+        self.parse_node(node.value, returns)
+        return returns
+
+    def process_func_def_node(self, node: _ast.FunctionDef) -> FunctionOutput:
+        decorators = []
+        body = []
+        returns = []
+        for _node in node.body:
+            if isinstance(_node, _ast.Return):
+                returns = self.parse_return_node(_node)
+            else:
+                self.parse_node(_node, body)
+
+        for decorator in node.decorator_list:
+            if isinstance(decorator, _ast.Call):
+                decorators.append(self.process_call_node(decorator))
+            elif isinstance(decorator, _ast.Name):
+                decorators.append(NameOutput(name=decorator.id))
+        funct = FunctionOutput(
+            name=node.name,
+            body=body,
+            decorators=decorators,
+            returns=returns,
+            lineno_end=node.end_lineno,
+            lineno_start=node.lineno,
+        )
+        return funct
+
+    def parse_node(self, node: Any, output: OUTPUT_TYPE) -> OUTPUT_TYPE:
         # global scope of module
         if isinstance(node, _ast.Import):
             output.extend(self.process_import_node(node))
@@ -236,8 +278,12 @@ class PyModulesParser:
             output.append(self.process_expression_node(node))
         elif isinstance(node, _ast.Try):
             output.extend(self.process_try_node(node))
+        # elif isinstance(node, _ast.Tuple):
+        # output.extend(self.process_tuple(node))
         elif isinstance(node, _ast.If):
             output.extend(self.process_if_node(node))
+        elif isinstance(node, _ast.FunctionDef):
+            output.append(self.process_func_def_node(node))
         elif isinstance(node, _ast.For):
             output.extend(self.process_for_node(node))
         elif isinstance(node, _ast.Assign):
@@ -245,10 +291,10 @@ class PyModulesParser:
         elif isinstance(node, ast.ClassDef):
             output.append(self.process_class(node))
 
-    def parse(self):
+    def parse(self) -> Union[OUTPUT_TYPE, GroupNodesByType]:
         self.ast_tree = ast.parse(self.input_code)
         tree = self.ast_tree
-        output = []
+        output = ParserOutput()
         for node in tree.body:
             self.parse_node(node, output)
         return output
