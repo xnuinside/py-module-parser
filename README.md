@@ -172,7 +172,6 @@ Because, output models is Pydantic models - you can do anything with them that y
 
 ### Output json
 
-
 ```python
 
 parsed_output = PyModulesParser(source_code).parse()
@@ -183,8 +182,11 @@ print("Result in json: \n", parsed_output_json)
 ### Output dict
 
 ```python
-parsed_output = PyModulesParser(source_code).parse()
 
+parsed_output = PyModulesParser(source_code).parse()
+parsed_output_group_dict = parsed_output.group_by_type().dict()
+print("Result as python dict: \n")
+print(parsed_output_group_dict)
 
 ```
 
@@ -195,10 +197,14 @@ parsed_output = PyModulesParser(source_code).parse()
 3. Implement parsing of nested classes
 
 ## Changelog
-** 0.3.0 - First stable release**
+** 0.4.0 - First stable release**
 
 1. Renamed FuncCallOutput to CallOutput to include Class calls as well as function calls.
 2. Added Enum to define available NodeTypes as py_module_parser.NodeTypes.
 3. Added parsing of function definition nodes.
 4. Implemented parsing of decorators.
-5. Added an optional group_by_type argument to PyModulesParser. If set to True, the output will be in the GroupNodesByType model, with keys such as imports, variables, classes, and functions, and all nodes will be grouped hierarchically inside them.
+5. Parser results can now be dumped to Python dictionaries or JSON, as well as grouped by type. For more details, please refer to the example/ directory and the README file.
+
+
+
+

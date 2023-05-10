@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "py-module-parser"
-version = "0.4.0b0"
+version = "0.4.0"
 description = "Python Module Parser is a library that parses Python modules and outputs information about imports, functions, variables, and their corresponding line numbers. This makes it easier to analyze and understand the structure of your Python code."
 authors = ["Iuliia Volkova <xnuinside@gmail.com>"]
 license = "MIT"

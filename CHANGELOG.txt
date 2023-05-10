@@ -4,4 +4,8 @@
 2. Added Enum to define available NodeTypes as py_module_parser.NodeTypes.
 3. Added parsing of function definition nodes.
 4. Implemented parsing of decorators.
-5. Added an optional group_by_type argument to PyModulesParser. If set to True, the output will be in the GroupNodesByType model, with keys such as imports, variables, classes, and functions, and all nodes will be grouped hierarchically inside them.
+5. Parser results can now be dumped to Python dictionaries or JSON, as well as grouped by type. For more details, please refer to the example/ directory and the README file.
+
+
+
+
