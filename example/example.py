@@ -8,6 +8,14 @@ class Musician(models.Model):
     last_name = models.CharField(max_length=50)
     instrument = models.CharField(max_length=100)
 
+
+@decor(params=1)
+@decor2
+def some_function(arg: str, arg2=None):
+    arg = 'any'
+    return arg, '1'
+
 """
 parsed_output = PyModulesParser(source_code).parse()
+print("Result: \n")
 print(parsed_output)

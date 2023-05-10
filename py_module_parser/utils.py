@@ -7,6 +7,3 @@ def parse_from_file(file_path: str, **kwargs) -> dict:
         data = file_to_parse.read()
         parser = PyModulesParser(data, **kwargs)
         return parser.parse()
-
-
-parse_from_file("/Users/xnuinside/work/py-module-parser/tests/test_data/pydal_.py")
