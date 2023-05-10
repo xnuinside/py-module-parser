@@ -1458,5 +1458,4 @@ params = [
 
 @pytest.mark.parametrize("file_path,result", params)
 def test_parse_from_file(file_path: str, result: dict):
-    print([x.json() for x in parse_from_file(file_path=file_path)])
     assert [x.dict() for x in parse_from_file(file_path=file_path)] == result

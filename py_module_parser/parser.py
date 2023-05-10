@@ -25,7 +25,6 @@ class PyModulesParser:
         self, node: ast.Assign, _attrs: List
     ) -> List[VariableOutput]:
         _type = None
-        print(node.targets[0].id)
         if isinstance(node.value, ast.Constant):
             # like a = 'b'
             value = node.value.value
@@ -48,7 +47,6 @@ class PyModulesParser:
                 lineno_end=node.end_lineno,
             )
             _attrs.append(_attr)
-        print(_attrs)
         return _attrs
 
     def process_annotation(
@@ -242,12 +240,10 @@ class PyModulesParser:
         body = []
         returns = []
         for _node in node.body:
-            print(type(_node))
             if isinstance(_node, _ast.Return):
                 returns = self.parse_return_node(_node)
             else:
                 self.parse_node(_node, body)
-                print(body)
 
         for decorator in node.decorator_list:
             if isinstance(decorator, _ast.Call):
@@ -262,15 +258,6 @@ class PyModulesParser:
             lineno_end=node.end_lineno,
             lineno_start=node.lineno,
         )
-
-    """def process_tuple(self, node: _ast.Tuple):
-        tuple_items = []
-        for _node in node.elts:
-            print(type(_node))
-            self.parse_node(_node, tuple_items)
-        print(tuple_items)
-        raise
-    """
 
     def parse_node(self, node: Any, output: OUTPUT_TYPE) -> OUTPUT_TYPE:
         # global scope of module
