@@ -55,7 +55,7 @@ class PyModulesParser:
         if isinstance(ann, ast.Name):
             _type = ann.id
         elif isinstance(ann, _ast.Subscript):
-            if sys.version_info.minor <= 9:
+            if sys.version_info.minor <= 8:
                 _slice = ann.slice.value
             else:
                 _slice = ann.slice.elts
@@ -64,7 +64,7 @@ class PyModulesParser:
             elif isinstance(_slice, ast.Attribute):
                 _type_value = [self.process_full_attr_node_name(_slice, None)]
             else:
-                if sys.version_info.minor <= 9:
+                if sys.version_info.minor <= 8:
                     slice_list = _slice.elts
                 else:
                     slice_list = _slice
