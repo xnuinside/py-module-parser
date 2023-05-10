@@ -1,4 +1,4 @@
-** 0.3.0 - First stable release**
+** 0.4.0 - First stable release**
 
 1. Renamed FuncCallOutput to CallOutput to include Class calls as well as function calls.
 2. Added Enum to define available NodeTypes as py_module_parser.NodeTypes.

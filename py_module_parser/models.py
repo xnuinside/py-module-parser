@@ -1,6 +1,7 @@
 from typing import Dict, List, Optional, Union
 from enum import Enum
 from pydantic import BaseModel, Field
+import json
 
 
 OUTPUT_TYPE = List[
@@ -87,12 +88,43 @@ class FromImportOutput(ParserOutput):
 
 
 class GroupNodesByType(BaseModel):
-    imports: List[Union[ImportOutput, FromImportOutput]]
-    functions: List[FunctionOutput]
-    classes: List[ClassOutput]
-    variables: List[VariableOutput]
-    calls: List[CallOutput]
+    imports: Optional[List[Union[ImportOutput, FromImportOutput]]]
+    functions: Optional[List[FunctionOutput]]
+    classes: Optional[List[ClassOutput]]
+    variables: Optional[List[VariableOutput]]
+    calls: Optional[List[CallOutput]]
 
 
-ClassOutput.update_forward_refs()
-FunctionOutput.update_forward_refs()
+class ParserOutput(list):
+    def group_by_type(self):
+        imports = []
+        classes = []
+        functions = []
+        calls = []
+        variables = []
+        for node_out in self:
+            node_type = node_out.node_type
+            if node_type in [NodesTypes.IMPORT.value, NodesTypes.IMPORT_FROM.value]:
+                imports.append(node_out)
+            elif node_type == NodesTypes.CLASS.value:
+                classes.append(node_out)
+            elif node_type == NodesTypes.FUNCTION_DEF.value:
+                functions.append(node_out)
+            elif node_type == NodesTypes.CALL.value:
+                calls.append(node_out)
+            elif node_type == NodesTypes.VARIABLE.value:
+                variables.append(node_out)
+        return GroupNodesByType(
+            variables=variables,
+            calls=calls,
+            classes=classes,
+            functions=functions,
+            imports=imports,
+        )
+
+    def json(self):
+        if isinstance(self, list):
+            _output = [i.dict() for i in self]
+            return json.dumps(_output)
+        else:
+            return self.json()

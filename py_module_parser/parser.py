@@ -1,5 +1,6 @@
 import _ast
 import ast
+import sys
 from typing import Any, Dict, List, Union
 
 from py_module_parser.models import (
@@ -10,16 +11,15 @@ from py_module_parser.models import (
     VariableOutput,
     FunctionOutput,
     GroupNodesByType,
-    NodesTypes,
     NameOutput,
     OUTPUT_TYPE,
+    ParserOutput,
 )
 
 
 class PyModulesParser:
-    def __init__(self, input_code: str, group_by_type: bool = False) -> None:
+    def __init__(self, input_code: str) -> None:
         self.input_code = input_code
-        self.group_by_type = group_by_type
 
     def process_assign_node(
         self, node: ast.Assign, _attrs: List
@@ -55,12 +55,20 @@ class PyModulesParser:
         if isinstance(ann, ast.Name):
             _type = ann.id
         elif isinstance(ann, _ast.Subscript):
-            if isinstance(ann.slice.value, ast.Name):
-                _type_value = [ann.slice.value.id]
-            elif isinstance(ann.slice.value, ast.Attribute):
-                _type_value = [self.process_full_attr_node_name(ann.slice.value, None)]
+            if sys.version_info.minor <= 9:
+                _slice = ann.slice.value
             else:
-                _type_value = [name.id for name in ann.slice.value.elts]
+                _slice = ann.slice.elts
+            if isinstance(_slice, ast.Name):
+                _type_value = [_slice.id]
+            elif isinstance(_slice, ast.Attribute):
+                _type_value = [self.process_full_attr_node_name(_slice, None)]
+            else:
+                if sys.version_info.minor <= 9:
+                    slice_list = _slice.elts
+                else:
+                    slice_list = _slice
+                _type_value = [name.id for name in slice_list]
             _type = {ann.value.id: _type_value}
         elif isinstance(ann, _ast.Attribute):
             _type = f"{ann.attr}.{ann.value.id}"
@@ -250,7 +258,7 @@ class PyModulesParser:
                 decorators.append(self.process_call_node(decorator))
             elif isinstance(decorator, _ast.Name):
                 decorators.append(NameOutput(name=decorator.id))
-        return FunctionOutput(
+        funct = FunctionOutput(
             name=node.name,
             body=body,
             decorators=decorators,
@@ -258,6 +266,7 @@ class PyModulesParser:
             lineno_end=node.end_lineno,
             lineno_start=node.lineno,
         )
+        return funct
 
     def parse_node(self, node: Any, output: OUTPUT_TYPE) -> OUTPUT_TYPE:
         # global scope of module
@@ -274,7 +283,7 @@ class PyModulesParser:
         elif isinstance(node, _ast.If):
             output.extend(self.process_if_node(node))
         elif isinstance(node, _ast.FunctionDef):
-            output.extend(self.process_func_def_node(node))
+            output.append(self.process_func_def_node(node))
         elif isinstance(node, _ast.For):
             output.extend(self.process_for_node(node))
         elif isinstance(node, _ast.Assign):
@@ -282,38 +291,10 @@ class PyModulesParser:
         elif isinstance(node, ast.ClassDef):
             output.append(self.process_class(node))
 
-    def group_output_by_type(self, output: OUTPUT_TYPE):
-        imports = []
-        classes = []
-        functions = []
-        calls = []
-        variables = []
-        for node_out in output:
-            node_type = node_out.node_type
-            if node_type in [NodesTypes.IMPORT.value, NodesTypes.IMPORT_FROM.value]:
-                imports.append(node_out)
-            elif node_type == NodesTypes.CLASS.value:
-                classes.append(node_type)
-            elif node_type == NodesTypes.FUNCTION_DEF.value:
-                functions.append(node_out)
-            elif node_type == NodesTypes.CALL.value:
-                calls.append(node_out)
-            elif node_type == NodesTypes.VARIABLE.value:
-                variables.append(node_out)
-        return GroupNodesByType(
-            variables=variables,
-            calls=calls,
-            classes=classes,
-            functions=functions,
-            imports=imports,
-        )
-
     def parse(self) -> Union[OUTPUT_TYPE, GroupNodesByType]:
         self.ast_tree = ast.parse(self.input_code)
         tree = self.ast_tree
-        output = []
+        output = ParserOutput()
         for node in tree.body:
             self.parse_node(node, output)
-        if self.group_by_type:
-            output = self.group_output_by_type()
         return output

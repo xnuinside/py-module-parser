@@ -23,6 +23,15 @@ To install the Python Module Parser library, use `pip`:
 
 
 ## Usage
+
+Example with different output formats provided in example/example.py
+
+```python
+    # to run example
+    python example/example.py
+
+```
+
 Here's a simple example of how to use the Python Module Parser library:
 
 ```python
@@ -58,7 +67,7 @@ This will output:
                 node_type='import'
             )
         ],
-        node_type='from_import'
+        node_type='import_from'
     ),
     ClassOutput(
         lineno_start=4,
@@ -77,7 +86,7 @@ This will output:
                     func_name='models.CharField',
                     args=[],
                     kwargs={'max_length': 50},
-                    node_type='func_call'
+                    node_type='call'
                 ),
                 properties={},
                 node_type='variable'
@@ -93,7 +102,7 @@ This will output:
                     func_name='models.CharField',
                     args=[],
                     kwargs={'max_length': 50},
-                    node_type='func_call'
+                    node_type='call'
                 ),
                 properties={},
                 node_type='variable'
@@ -109,7 +118,7 @@ This will output:
                     func_name='models.CharField',
                     args=[],
                     kwargs={'max_length': 100},
-                    node_type='func_call'
+                    node_type='call'
                 ),
                 properties={},
                 node_type='variable'
@@ -131,7 +140,8 @@ print(parsed_output)
 
 ## Parser Output
 
-By default parser output is a list of Pydantic models with nested objects.
+By default parser output is a ParserOutput model -it is a list with some additional methods.
+List contains inside a nodes from parsed files - all Nodes is a Pydantic models with nested objects.
 
 List of possible node types exists as enum in py_modules_parser.NodesTypes:
     
@@ -147,16 +157,42 @@ Node type is always stored in argumen `node_type`
 
 Because, output models is Pydantic models - you can do anything with them that you can do with pydantic models.
 
-You can call .json() or .dict() if you prefer to have output not in Python Classes but as python dicts or json.
-
-If you are not familiar with Pydantic - check docs: https://docs.pydantic.dev/latest/usage/exporting_models/ 
-
-## TODO in next Releases
+### Output group_by_type
 
 
-1. Add parsing of functions arguments
-2. Add parsing of functions returns
-3. Add parsing for nested classes
+```python
+
+    parsed_output = PyModulesParser(source_code).parse()
+    parsed_output_group = parsed_output.group_by_type()
+    print("Result group_by_type: \n", parsed_output_group)
+    # you can also use parsed_output.group_by_type().json()
+    # to get json output grouped by type
+
+```
+
+### Output json
+
+
+```python
+
+parsed_output = PyModulesParser(source_code).parse()
+parsed_output_json= parsed_output.json()
+print("Result in json: \n", parsed_output_json)
+
+```
+### Output dict
+
+```python
+parsed_output = PyModulesParser(source_code).parse()
+
+
+```
+
+
+## TODO in future releases
+1. Implement parsing of function arguments
+2. Implement parsing of function returns
+3. Implement parsing of nested classes
 
 ## Changelog
 ** 0.3.0 - First stable release**
