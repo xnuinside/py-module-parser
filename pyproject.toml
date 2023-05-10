@@ -8,10 +8,10 @@ readme = "README.md"
 homepage = "https://github.com/xnuinside/py-module-parser"
 repository = "https://github.com/xnuinside/py-module-parser"
 classifiers = [
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "Topic :: Software Development",
     "Topic :: Software Development :: Libraries",
     "Topic :: Utilities",
@@ -19,7 +19,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 pydantic = "^1.10.7"
 
 [tool.poetry.dev-dependencies]
