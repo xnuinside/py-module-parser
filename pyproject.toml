@@ -23,7 +23,7 @@ python = "^3.8"
 pydantic = "^1.10.7"
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.3"
+pytest = "^7.4"
 twine = "^4.0.2"
 
 [build-system]
