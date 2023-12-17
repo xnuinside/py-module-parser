@@ -28,7 +28,7 @@ print(parsed_output_group)
 
 # you can also use parsed_output.group_by_type().json()
 # to get json output grouped by type
-parsed_output_group_dict = parsed_output.group_by_type().dict()
+parsed_output_group_dict = parsed_output.group_by_type().model_dump()
 print("Result as python dict: \n")
 print(parsed_output_group_dict)
 
