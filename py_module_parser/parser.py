@@ -41,7 +41,7 @@ class PyModulesParser:
             name = target.id
             _attr = VariableOutput(
                 name=name,
-                default=value,
+                value=value,
                 type_annotation=_type,
                 lineno_start=node.lineno,
                 lineno_end=node.end_lineno,
@@ -154,7 +154,7 @@ class PyModulesParser:
 
         _attr = VariableOutput(
             name=name,
-            default=value,
+            value=value,
             type_annotation=_type,
             lineno_start=node.lineno,
             lineno_end=node.end_lineno,

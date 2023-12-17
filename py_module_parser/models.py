@@ -46,7 +46,7 @@ class VariableOutput(ParserOutput):
     # column type - varchar, double, json, etc
     # type can be dict for example: {'Union': ['dict', 'list']}
     type_annotation: Union[Dict[str, List], str, None]
-    default: Optional[Union[str, int, CallOutput, list, dict]]
+    value: Optional[Union[str, int, CallOutput, list, dict]]
     node_type: str = NodesTypes.VARIABLE.value
 
 
@@ -124,7 +124,7 @@ class ParserOutput(list):
 
     def json(self):
         if isinstance(self, list):
-            _output = [i.dict() for i in self]
+            _output = [i.model_dump() for i in self]
             return json.dumps(_output)
         else:
             return self.json()

@@ -1,3 +1,9 @@
+** 0.5.0 - Update pydantic to 2.x version **
+
+1. Pydantic is updated to 2.5.2
+2. VariableOutput.default was renamed to VariableOutput.value
+
+
 ** 0.4.0 - First stable release**
 
 1. Renamed FuncCallOutput to CallOutput to include Class calls as well as function calls.

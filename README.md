@@ -80,7 +80,7 @@ This will output:
                 lineno_end=5,
                 name='first_name',
                 type_annotation=None,
-                default=CallOutput(
+                value=CallOutput(
                     lineno_start=5,
                     lineno_end=5,
                     func_name='models.CharField',
@@ -96,7 +96,7 @@ This will output:
                 lineno_end=6,
                 name='last_name',
                 type_annotation=None,
-                default=CallOutput(
+                value=CallOutput(
                     lineno_start=6,
                     lineno_end=6,
                     func_name='models.CharField',
@@ -112,7 +112,7 @@ This will output:
                 lineno_end=7,
                 name='instrument',
                 type_annotation=None,
-                default=CallOutput(
+                value=CallOutput(
                     lineno_start=7,
                     lineno_end=7,
                     func_name='models.CharField',
@@ -184,7 +184,7 @@ print("Result in json: \n", parsed_output_json)
 ```python
 
 parsed_output = PyModulesParser(source_code).parse()
-parsed_output_group_dict = parsed_output.group_by_type().dict()
+parsed_output_group_dict = parsed_output.group_by_type().model_dump()
 print("Result as python dict: \n")
 print(parsed_output_group_dict)
 
@@ -197,6 +197,12 @@ print(parsed_output_group_dict)
 3. Implement parsing of nested classes
 
 ## Changelog
+** 0.5.0 - Update pydantic to 2.x version **
+
+1. Pydantic is updated to 2.5.2
+2. VariableOutput.default was renamed to VariableOutput.value
+
+
 ** 0.4.0 - First stable release**
 
 1. Renamed FuncCallOutput to CallOutput to include Class calls as well as function calls.

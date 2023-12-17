@@ -32,7 +32,7 @@ params = [
                 "node_type": "import_from",
             },
             {
-                "default": {
+                "value": {
                     "args": [],
                     "call_name": "Gino",
                     "kwargs": {},
@@ -49,7 +49,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": "users",
+                        "value": "users",
                         "lineno_end": 8,
                         "lineno_start": 8,
                         "name": "__tablename__",
@@ -57,7 +57,7 @@ params = [
                         "type_annotation": "str",
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [
                                 {
                                     "args": [],
@@ -81,7 +81,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [
                                 {
                                     "args": [],
@@ -105,7 +105,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [
                                 {
                                     "args": [],
@@ -129,7 +129,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [
                                 {
                                     "args": [],
@@ -153,7 +153,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [
                                 {
                                     "args": [],
@@ -177,7 +177,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [
                                 {
                                     "args": [],
@@ -274,7 +274,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": "article",
+                        "value": "article",
                         "lineno_end": 8,
                         "lineno_start": 8,
                         "name": "article",
@@ -282,7 +282,7 @@ params = [
                         "type_annotation": "str",
                     },
                     {
-                        "default": "video",
+                        "value": "video",
                         "lineno_end": 9,
                         "lineno_start": 9,
                         "name": "video",
@@ -299,7 +299,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": None,
+                        "value": None,
                         "lineno_end": 14,
                         "lineno_start": 14,
                         "name": "id",
@@ -307,7 +307,7 @@ params = [
                         "type_annotation": "int",
                     },
                     {
-                        "default": None,
+                        "value": None,
                         "lineno_end": 15,
                         "lineno_start": 15,
                         "name": "description",
@@ -315,7 +315,7 @@ params = [
                         "type_annotation": "str",
                     },
                     {
-                        "default": None,
+                        "value": None,
                         "lineno_end": 16,
                         "lineno_start": 16,
                         "name": "additional_properties",
@@ -323,7 +323,7 @@ params = [
                         "type_annotation": {"Union": ["dict", "list", "tuple", "Any"]},
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "datetime.datetime.now",
                             "kwargs": {},
@@ -338,7 +338,7 @@ params = [
                         "type_annotation": "datetime.datetime",
                     },
                     {
-                        "default": None,
+                        "value": None,
                         "lineno_end": 18,
                         "lineno_start": 18,
                         "name": "updated_at",
@@ -355,7 +355,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": None,
+                        "value": None,
                         "lineno_end": 23,
                         "lineno_start": 23,
                         "name": "id",
@@ -363,7 +363,7 @@ params = [
                         "type_annotation": "int",
                     },
                     {
-                        "default": None,
+                        "value": None,
                         "lineno_end": 24,
                         "lineno_start": 24,
                         "name": "description",
@@ -371,7 +371,7 @@ params = [
                         "type_annotation": "str",
                     },
                     {
-                        "default": None,
+                        "value": None,
                         "lineno_end": 25,
                         "lineno_start": 25,
                         "name": "additional_properties",
@@ -379,7 +379,7 @@ params = [
                         "type_annotation": {"Union": ["dict", "list"]},
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "datetime.datetime.now",
                             "kwargs": {},
@@ -394,7 +394,7 @@ params = [
                         "type_annotation": "datetime.datetime",
                     },
                     {
-                        "default": None,
+                        "value": None,
                         "lineno_end": 27,
                         "lineno_start": 27,
                         "name": "updated_at",
@@ -431,7 +431,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.CharField",
                             "kwargs": {"max_length": 50},
@@ -446,7 +446,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.CharField",
                             "kwargs": {"max_length": 50},
@@ -461,7 +461,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.CharField",
                             "kwargs": {"max_length": 100},
@@ -485,7 +485,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": {
+                        "value": {
                             "args": ["Musician"],
                             "call_name": "models.ForeignKey",
                             "kwargs": {"on_delete": "models"},
@@ -500,7 +500,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.CharField",
                             "kwargs": {"max_length": 100},
@@ -515,7 +515,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.DateField",
                             "kwargs": {},
@@ -530,7 +530,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.IntegerField",
                             "kwargs": {},
@@ -562,7 +562,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": {
+                        "value": {
                             "args": ["Topping"],
                             "call_name": "models.ManyToManyField",
                             "kwargs": {},
@@ -586,7 +586,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.CharField",
                             "kwargs": {"max_length": 128},
@@ -610,7 +610,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.CharField",
                             "kwargs": {"max_length": 128},
@@ -625,7 +625,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": ["Person"],
                             "call_name": "models.ManyToManyField",
                             "kwargs": {"through": "Membership"},
@@ -649,7 +649,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": {
+                        "value": {
                             "args": ["Person"],
                             "call_name": "models.ForeignKey",
                             "kwargs": {"on_delete": "models"},
@@ -664,7 +664,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": ["Group"],
                             "call_name": "models.ForeignKey",
                             "kwargs": {"on_delete": "models"},
@@ -679,7 +679,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.DateField",
                             "kwargs": {},
@@ -694,7 +694,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.CharField",
                             "kwargs": {"max_length": 64},
@@ -718,7 +718,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.IntegerField",
                             "kwargs": {},
@@ -742,7 +742,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.CharField",
                             "kwargs": {"max_length": 30},
@@ -766,7 +766,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "models.CharField",
                             "kwargs": {"max_length": 100},
@@ -781,7 +781,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": ["Publication"],
                             "call_name": "models.ManyToManyField",
                             "kwargs": {},
@@ -829,7 +829,7 @@ params = [
                 "node_type": "import",
             },
             {
-                "default": {
+                "value": {
                     "args": ["sqlite:///db.sqlite"],
                     "call_name": "databases.Database",
                     "kwargs": {},
@@ -844,7 +844,7 @@ params = [
                 "type_annotation": None,
             },
             {
-                "default": {
+                "value": {
                     "args": [],
                     "call_name": "sqlalchemy.MetaData",
                     "kwargs": {},
@@ -861,7 +861,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": "notes",
+                        "value": "notes",
                         "lineno_end": 10,
                         "lineno_start": 10,
                         "name": "__tablename__",
@@ -869,7 +869,7 @@ params = [
                         "type_annotation": "str",
                     },
                     {
-                        "default": "database",
+                        "value": "database",
                         "lineno_end": 11,
                         "lineno_start": 11,
                         "name": "__database__",
@@ -877,7 +877,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": "metadata",
+                        "value": "metadata",
                         "lineno_end": 12,
                         "lineno_start": 12,
                         "name": "__metadata__",
@@ -885,7 +885,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.Integer",
                             "kwargs": {"primary_key": True},
@@ -900,7 +900,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.String",
                             "kwargs": {"index": True, "max_length": 100},
@@ -915,7 +915,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.Boolean",
                             "kwargs": {"default": False},
@@ -939,7 +939,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": "album",
+                        "value": "album",
                         "lineno_end": 20,
                         "lineno_start": 20,
                         "name": "__tablename__",
@@ -947,7 +947,7 @@ params = [
                         "type_annotation": "str",
                     },
                     {
-                        "default": "metadata",
+                        "value": "metadata",
                         "lineno_end": 21,
                         "lineno_start": 21,
                         "name": "__metadata__",
@@ -955,7 +955,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": "database",
+                        "value": "database",
                         "lineno_end": 22,
                         "lineno_start": 22,
                         "name": "__database__",
@@ -963,7 +963,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.Integer",
                             "kwargs": {"primary_key": True},
@@ -978,7 +978,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.String",
                             "kwargs": {"max_length": 100},
@@ -1002,7 +1002,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": "track",
+                        "value": "track",
                         "lineno_end": 29,
                         "lineno_start": 29,
                         "name": "__tablename__",
@@ -1010,7 +1010,7 @@ params = [
                         "type_annotation": "str",
                     },
                     {
-                        "default": "metadata",
+                        "value": "metadata",
                         "lineno_end": 30,
                         "lineno_start": 30,
                         "name": "__metadata__",
@@ -1018,7 +1018,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": "database",
+                        "value": "database",
                         "lineno_end": 31,
                         "lineno_start": 31,
                         "name": "__database__",
@@ -1026,7 +1026,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.Integer",
                             "kwargs": {"primary_key": True},
@@ -1041,7 +1041,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": ["Album"],
                             "call_name": "orm.ForeignKey",
                             "kwargs": {},
@@ -1056,7 +1056,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.String",
                             "kwargs": {"max_length": 100},
@@ -1071,7 +1071,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.Integer",
                             "kwargs": {},
@@ -1095,7 +1095,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": "org",
+                        "value": "org",
                         "lineno_end": 40,
                         "lineno_start": 40,
                         "name": "__tablename__",
@@ -1103,7 +1103,7 @@ params = [
                         "type_annotation": "str",
                     },
                     {
-                        "default": "metadata",
+                        "value": "metadata",
                         "lineno_end": 41,
                         "lineno_start": 41,
                         "name": "__metadata__",
@@ -1111,7 +1111,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": "database",
+                        "value": "database",
                         "lineno_end": 42,
                         "lineno_start": 42,
                         "name": "__database__",
@@ -1119,7 +1119,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.Integer",
                             "kwargs": {"primary_key": True},
@@ -1134,7 +1134,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.String",
                             "kwargs": {"max_length": 100},
@@ -1158,7 +1158,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": "team",
+                        "value": "team",
                         "lineno_end": 49,
                         "lineno_start": 49,
                         "name": "__tablename__",
@@ -1166,7 +1166,7 @@ params = [
                         "type_annotation": "str",
                     },
                     {
-                        "default": "metadata",
+                        "value": "metadata",
                         "lineno_end": 50,
                         "lineno_start": 50,
                         "name": "__metadata__",
@@ -1174,7 +1174,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": "database",
+                        "value": "database",
                         "lineno_end": 51,
                         "lineno_start": 51,
                         "name": "__database__",
@@ -1182,7 +1182,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.Integer",
                             "kwargs": {"primary_key": True},
@@ -1197,7 +1197,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": ["Organisation"],
                             "call_name": "orm.ForeignKey",
                             "kwargs": {},
@@ -1212,7 +1212,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.String",
                             "kwargs": {"max_length": 100},
@@ -1236,7 +1236,7 @@ params = [
             {
                 "attrs": [
                     {
-                        "default": "member",
+                        "value": "member",
                         "lineno_end": 59,
                         "lineno_start": 59,
                         "name": "__tablename__",
@@ -1244,7 +1244,7 @@ params = [
                         "type_annotation": "str",
                     },
                     {
-                        "default": "metadata",
+                        "value": "metadata",
                         "lineno_end": 60,
                         "lineno_start": 60,
                         "name": "__metadata__",
@@ -1252,7 +1252,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": "database",
+                        "value": "database",
                         "lineno_end": 61,
                         "lineno_start": 61,
                         "name": "__database__",
@@ -1260,7 +1260,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.Integer",
                             "kwargs": {"primary_key": True},
@@ -1275,7 +1275,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": ["Team"],
                             "call_name": "orm.ForeignKey",
                             "kwargs": {},
@@ -1290,7 +1290,7 @@ params = [
                         "type_annotation": None,
                     },
                     {
-                        "default": {
+                        "value": {
                             "args": [],
                             "call_name": "orm.String",
                             "kwargs": {"max_length": 100},
@@ -1339,7 +1339,7 @@ params = [
                 "node_type": "import_from",
             },
             {
-                "default": {
+                "value": {
                     "args": ["sqlite://test.db"],
                     "call_name": "DAL",
                     "kwargs": {"folder": "dbs"},
@@ -1458,4 +1458,4 @@ params = [
 
 @pytest.mark.parametrize("file_path,result", params)
 def test_parse_from_file(file_path: str, result: dict):
-    assert [x.dict() for x in parse_from_file(file_path=file_path)] == result
+    assert [x.model_dump() for x in parse_from_file(file_path=file_path)] == result
